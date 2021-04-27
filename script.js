@@ -4,8 +4,7 @@ let lower = "getRandomLower";
 let upper = "getRandomUpper";
 let number = "getRandomNumber";
 let symbol = "getRandomSymbol";
-let pwLength = "pwlength";
-let pwLengthAsNumber = parseInt(pwLength);
+let pwLength = 0;
 let finalpw='';
 
 
@@ -17,10 +16,10 @@ let finalpw='';
 //   symbol = confirm("Do you want special characters?");
 //   return;
 // };
-  console.log(getRandomUpper());
 
 
-var usersOption=[];
+
+let userOptions=[];
 
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -38,9 +37,12 @@ function getRandomSymbol() {
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
-
+function getRandomUserOption() {
+  const randomUserOptionIndex = Math.floor(Math.random() * userOptions.length);
+  return userOptions[randomUserOptionIndex];
+}
 function generatePassword(){
-  usersOption=[];
+  userOptions=[];
   finalpw='';
   //ask users length
   //THEN I choose a length 
@@ -52,9 +54,9 @@ function generatePassword(){
   //uppercase, 
   //numeric, 
   //special characters
-  pwLength = prompt("Enter a password length between 8 - 128.");
+  pwLength = parseInt(prompt("Enter a password length between 8 - 128."));
 
-  while(parseInt(pwLength)>128 || parseInt(pwLength)<8)
+  while(pwLength>128 || pwLength<8)
   {
     pwLength = prompt("Error, please enter a password length between 8 - 128.");
     console.log("try again")
@@ -67,48 +69,80 @@ function generatePassword(){
 
   //decide if each one acceptable
   if(lower){
-    usersOption.push('lower')
+    userOptions.push('lower')
   }
   if(upper){
-    usersOption.push('upper')
+    userOptions.push('upper')
   }
   if(number){
-    usersOption.push('number')
+    userOptions.push('number')
   }
   if(symbol){
-    usersOption.push('symbol')
+    userOptions.push('symbol')
   }
 
   //if yes to lowers
     //refer to fx to get lowercase
 
-    console.log(usersOption)
-    console.log(pwLength)
+    console.log("userOptions",userOptions)
+    console.log("pwLength",pwLength)
 
-    for(var i=0;i<parseInt(pwLength);i++){
-      //Math.floor(Math.random() * (max - min) + min);
-      //console.log(usersOption[Math.floor(Math.random() * ((usersOption.length) - 0) + 0)]);
-      if(usersOption[Math.floor(Math.random() * ((usersOption.length) - 0) + 0)]=="lower")
-        {
-          finalpw+=getRandomLower();
-        }
-        if(usersOption[Math.floor(Math.random() * ((usersOption.length) - 0) + 0)]=="symbol")
-        {
-          finalpw+=getRandomSymbol();
-        }
-        if(usersOption[Math.floor(Math.random() * ((usersOption.length) - 0) + 0)]=="upper")
-        {
-          finalpw+=getRandomUpper();
-        }
-        if(usersOption[Math.floor(Math.random() * ((usersOption.length) - 0) + 0)]=="number")
-        {
-          finalpw+=getRandomNumber();
-        }
+     for(let i=0;i<pwLength;i++){
+       let userOption = getRandomUserOption();
+      console.log("user option",userOption);
+      //  if(userOption === 'lower') {
+      //    finalpw +=getRandomLower(); 
+      //  }
+      //  if(userOption === 'upper'){
+      //   finalpw +=getRandomUpper();
+      //  }
+      //  if(userOption === 'number'){
+      //   finalpw +=getRandomNumber();
+      //  }
+      //  if(userOption === 'symbol'){
+      //   finalpw += getRandomSymbol();
+      //  }
+
+      switch(userOption){
+        case 'lower': 
+          finalpw +=getRandomLower();
+          break;
+        case 'upper': 
+          finalpw +=getRandomUpper();
+          break; 
+        case 'number': 
+          finalpw +=getRandomNumber();
+          break;
+        case 'symbol': 
+          finalpw +=getRandomSymbol();
+          break;
+      }
+     }
+
+    // for(let i=0;i<parseInt(pwLength);i++){
+    //   //Math.floor(Math.random() * (max - min) + min);
+    //   //console.log(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]);
+    //   if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="lower")
+    //     {
+    //       finalpw+=getRandomLower();
+    //     }
+    //     if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="symbol")
+    //     {
+    //       finalpw+=getRandomSymbol();
+    //     }
+    //     if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="upper")
+    //     {
+    //       finalpw+=getRandomUpper();
+    //     }
+    //     if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="number")
+    //     {
+    //       finalpw+=getRandomNumber();
+    //     }
         
-    }
+    // }
 
-    console.log(finalpw);
   
+
 
 
 
