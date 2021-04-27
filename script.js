@@ -90,6 +90,8 @@ function generatePassword(){
      for(let i=0;i<pwLength;i++){
        let userOption = getRandomUserOption();
       console.log("user option",userOption);
+
+// Code does not stop even if it finds a match for the userOption runs through entire code
       //  if(userOption === 'lower') {
       //    finalpw +=getRandomLower(); 
       //  }
@@ -102,7 +104,7 @@ function generatePassword(){
       //  if(userOption === 'symbol'){
       //   finalpw += getRandomSymbol();
       //  }
-
+//Optimized - Evaluating once, if there is a match for the single option the code stops
       switch(userOption){
         case 'lower': 
           finalpw +=getRandomLower();
