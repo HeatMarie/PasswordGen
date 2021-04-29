@@ -125,17 +125,17 @@ function generatePassword(promptMessage){
 
   while(pwLength>128 || pwLength<8)
   {
-    return generatePassword("Error, this needs to be a number between 8 - 128.");
+    return generatePassword("Error, this needs to be a number between 8 and 128.");
   }
 
  
-  lower = confirm("Do you want lowercase characters?");
+  lower = confirm("Would you like to use lowercase characters? Click Ok for yes, Cancel for no.");
 
-  upper = confirm("Do you want uppercase characters?");
+  upper = confirm("Would you like to use uppercase characters? Click Ok for yes, Cancel for no.");
 
-  number = confirm("Do you want numbers?");
+  number = confirm("Would you like to use numbers? Click Ok for yes, Cancel for no.");
 
-  symbol = confirm("Do you want special characters?");
+  symbol = confirm("Would you like to use special characters? Click Ok for yes, Cancel for no.");
   
 
   //if the boolean value is true the following if statements pushes to the userOptions array.
@@ -199,7 +199,8 @@ function generatePassword(promptMessage){
 
 // This if is the condition that if userOptions has no input it will return an alert. That tells the user to regenerate and select at least one option.
      if (userOptions.length === 0){
-      return alert("You must select at least one option. Please click Generate Password to create a password.");
+      alert("You must select at least one option. Please click Generate Password to create a password.");
+      return "Your Secure Password"
     }
      
 
@@ -210,7 +211,7 @@ function generatePassword(promptMessage){
 
 // Write password to the #password input
 function writePassword() {
-  let password = generatePassword("Please enter a password length between 8 - 128.");
+  let password = generatePassword("Please enter a password length between 8 and 128.");
   let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
