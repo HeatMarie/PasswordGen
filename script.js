@@ -17,11 +17,17 @@ let pwLength assigns the initial value of the pwLength which is 0 and will chang
 let finalpw assigns the variable finalpw an initial empty string that will later be used to hold the value of the final password. 
 */
 let generateBtn = document.querySelector("#generate");
+
 let lower = "getRandomLower";
+
 let upper = "getRandomUpper";
+
 let number = "getRandomNumber";
+
 let symbol = "getRandomSymbol";
+
 let pwLength = 0;
+
 let finalpw='';
 
 
@@ -47,27 +53,33 @@ let userOptions=[];
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
   }
+
+
 function getRandomUpper() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
 
+
 function getRandomNumber() {
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 } 
+
 
 function getRandomSymbol() {
   const symbols = '!@#$%^&*(){}[]=<>/,.'
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
+
 function getRandomUserOption() {
   const randomUserOptionIndex = Math.floor(Math.random() * userOptions.length);
   return userOptions[randomUserOptionIndex];
 }
 
+
 /* The following function generatePassword begins to generate the Password based on user input by doing the following: 
 
-it sets userOptions' initial value to an empty array,
+sets userOptions' initial value to an empty array,
 
 sets finalpw's inital value to an empty string
 
@@ -81,53 +93,75 @@ If the user assigns a value greater than 128 OR less than 8 it will prompt the u
 if the value entered is between the range of 8-128 it will contine to the next confirm.
 
 lower is assigned a confirm which establishes a boolean value in the case of lowercase characters,
+
+upper is assigned a confirm which establishes a boolean value in the case of uppercase characters,
+
+number is a assigned a confirm which establishes a boolean value in the case of numbers, 
+
+symbol is assigned a confrim which establilshes a boolean vallue in the case of symbols.
+
+
 */
 
-function generatePassword(){
+function generatePassword(promptMessage){
+
   userOptions=[];
 
   finalpw='';
 
-  pwLength = parseInt(prompt("Enter a password length between 8 - 128."));
+  const lengthPrompt = prompt(promptMessage);
+  
+  if (lengthPrompt === null){
+  return "Your Secure Password";
+}
+
+  pwLength = parseInt(lengthPrompt);
+
+
+  if(isNaN(pwLength)){
+  return generatePassword("Error, this needs to be an actual number.");
+}
+
 
   while(pwLength>128 || pwLength<8)
   {
-    pwLength = prompt("Error, please enter a password length between 8 - 128.");
-    console.log("try again")
-
+    return generatePassword("Error, this needs to be a number between 8 - 128.");
   }
+
+ 
   lower = confirm("Do you want lowercase characters?");
+
   upper = confirm("Do you want uppercase characters?");
+
   number = confirm("Do you want numbers?");
+
   symbol = confirm("Do you want special characters?");
   
 
+  //if the boolean value is true the following if statements pushes to the userOptions array.
 
-  //decide if each one acceptable
   if(lower){
     userOptions.push('lower')
   }
+
   if(upper){
     userOptions.push('upper')
   }
+
   if(number){
     userOptions.push('number')
   }
+  
   if(symbol){
     userOptions.push('symbol')
   }
   
 
-  //if yes to lowers
-    //refer to fx to get lowercase
+  // For loop states that i starts at 0 and increases by 1 until it reaches the password length determined by the user. the userOption variable is created to get the random user options. 
 
-    console.log("userOptions",userOptions)
-    console.log("pwLength",pwLength)
-
-     for(let i=0;i<pwLength;i++){
+      for(let i=0;i<pwLength;i++){
        let userOption = getRandomUserOption();
-      console.log("user option",userOption);
-
+    
 // Code does not stop if it finds a match for the userOption. Instead it runs through entire code before stopping. The end result is the same as the switch. 
 
       //  if(userOption === 'lower') {
@@ -144,6 +178,8 @@ function generatePassword(){
       //  }
 
 //Optimized - Evaluating once, if there is a match for the single option the code stops
+
+
       switch(userOption){
         case 'lower': 
           finalpw +=getRandomLower();
@@ -160,49 +196,21 @@ function generatePassword(){
       }
      }
 
+
+// This if is the condition that if userOptions has no input it will return an alert. That tells the user to regenerate and select at least one option.
      if (userOptions.length === 0){
-      return alert("don't be stupid");
+      return alert("You must select at least one option. Please click Generate Password to create a password.");
     }
-    //  (let i=0;i<parseInt(pwLength);i++){
-
-    //   //Math.floor(Math.random() * (max - min) + min);
-    //   //console.log(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]);
-    //   if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="lower")
-    //     {
-    //       finalpw+=getRandomLower();
-    //     }
-    //     if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="symbol")
-    //     {
-    //       finalpw+=getRandomSymbol();
-    //     }
-    //     if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="upper")
-    //     {
-    //       finalpw+=getRandomUpper();
-    //     }
-    //     if(userOptions[Math.floor(Math.random() * ((userOptions.length) - 0) + 0)]=="number")
-    //     {
-    //       finalpw+=getRandomNumber();
-    //     }
-        
-    // }
-
-  
-
-    // if (!lower && !upper && !symbol && !number){
-    //   alert("don't be stupid")
-    // } else {
-    //   return;
-    // }
-
+     
 
   //returns the user's pw
-  return finalpw;
+  return finalpw;3
 }
 
 
 // Write password to the #password input
 function writePassword() {
-  let password = generatePassword();
+  let password = generatePassword("Please enter a password length between 8 - 128.");
   let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
