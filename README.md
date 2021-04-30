@@ -11,6 +11,8 @@ This is a javascript assignment that is meant to fulfill the following critera.
 - the password is generated 
 - the password is either displayed in an alert or written to the page. 
 
+<img src="img/Capture.JPG">
+
 The link for PasswordGen: 
 
 https://heatmarie.github.io/PasswordGen/

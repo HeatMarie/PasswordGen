@@ -162,20 +162,6 @@ function generatePassword(promptMessage){
       for(let i=0;i<pwLength;i++){
        let userOption = getRandomUserOption();
     
-// Code does not stop if it finds a match for the userOption. Instead it runs through entire code before stopping. The end result is the same as the switch. 
-
-      //  if(userOption === 'lower') {
-      //    finalpw +=getRandomLower(); 
-      //  }
-      //  if(userOption === 'upper'){
-      //   finalpw +=getRandomUpper();
-      //  }
-      //  if(userOption === 'number'){
-      //   finalpw +=getRandomNumber();
-      //  }
-      //  if(userOption === 'symbol'){
-      //   finalpw += getRandomSymbol();
-      //  }
 
 //Optimized - Evaluating once, if there is a match for the single option the code stops
 
