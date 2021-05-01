@@ -191,7 +191,7 @@ function generatePassword(promptMessage){
      
 
   //returns the user's pw
-  return finalpw;3
+  return finalpw;
 }
 
 
