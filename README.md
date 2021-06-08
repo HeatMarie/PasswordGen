@@ -27,3 +27,9 @@ The hardest thing for me was knowing where to start. It took time to figure out 
 ## Technologies Used
 
 -JavaScript
+
+## Contact Information 
+
+Heather Bjoin 
+
+h.m.bjoin@gmail.com
